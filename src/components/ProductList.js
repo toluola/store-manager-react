@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Title from "./Title";
+import Product from "./Product";
 import { ProductConsumer } from '../context';
 
 export default class ProductList extends Component {
@@ -11,8 +12,10 @@ export default class ProductList extends Component {
             <Title name="our" title="products" />
             <div className="row">
               <ProductConsumer>
-                {(hello) => {
-                  return <h1>{hello}</h1>
+                {(data) => {
+                  return data.products.map(product => {
+                    return <Product key={product.id} product = {product} />
+                  })
                 }}
               </ProductConsumer>
             </div>
