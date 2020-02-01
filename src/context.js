@@ -35,20 +35,44 @@ class ProductProvider extends Component {
     });
   };
   increment = id => {
-    let cartProducts = [...this.state.cart];
-    let filteredProduct = cartProducts.find(item => item.id === id);
+    const cartProducts = [...this.state.cart];
+    const filteredProduct = cartProducts.find(item => item.id === id);
     const index = cartProducts.indexOf(filteredProduct);
     let productCount = cartProducts[index];
     productCount.count++;
+    productCount.total = productCount.price * productCount.count;
 
-    this.setState(() => {
-      return {
-        cart: cartProducts
-      };
-    });
+    this.setState(
+      () => {
+        return {
+          cart: cartProducts
+        };
+      },
+      () => {
+        this.addTotal();
+      }
+    );
   };
   decrement = id => {
-    console.log("this is increment");
+    const cartProducts = [...this.state.cart];
+    const filteredProduct = cartProducts.find(item => item.id === id);
+    const index = cartProducts.indexOf(filteredProduct);
+    let productCount = cartProducts[index];
+    if (productCount.count >= 2) {
+      productCount.count--;
+      productCount.total = productCount.price * productCount.count;
+    }
+
+    this.setState(
+      () => {
+        return {
+          cart: cartProducts
+        };
+      },
+      () => {
+        this.addTotal();
+      }
+    );
   };
   removeItem = id => {
     let tempProduct = [...this.state.products];

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "@reach/router";
+import PayStackButton from "./PayStackButton";
 
-export default function CartTotals({ value }) {
+export default function CartTotals({ value, history }) {
   const { cartSubTotal, cartTax, cartTotal, clearCart } = value;
   return (
     <React.Fragment>
@@ -29,6 +30,11 @@ export default function CartTotals({ value }) {
               <span className="text-title">total :</span>
               <strong> $ {cartTotal} </strong>
             </h5>
+            <PayStackButton
+              value={value}
+              clearCart={clearCart}
+              history={history}
+            />
           </div>
         </div>
       </div>
