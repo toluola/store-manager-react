@@ -43,7 +43,7 @@ class App extends Component {
           embed={true}
           reference={this.getReference()}
           email={this.state.email}
-          amount={this.state.amount}
+          amount={this.props.value * 100}
           paystackkey={this.state.key}
           tag="button"
         />

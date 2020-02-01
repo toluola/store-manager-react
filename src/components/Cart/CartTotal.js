@@ -31,7 +31,7 @@ export default function CartTotals({ value, history }) {
               <strong> NGN {cartTotal} </strong>
             </h5>
             <PayStackButton
-              value={value}
+              value={cartTotal}
               clearCart={clearCart}
               history={history}
             />
